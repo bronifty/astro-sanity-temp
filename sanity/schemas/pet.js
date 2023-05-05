@@ -2,27 +2,22 @@
 export default {
   name: 'pet',
   type: 'document',
-	title: 'Pet',
+  title: 'Pet',
   fields: [
     {
       name: 'name',
       type: 'string',
-      title: 'Name'
+      title: 'Name',
     },
     {
       name: 'animal',
       type: 'string',
-      title: 'Animal'
+      title: 'Animal',
     },
     {
       name: 'breed',
       type: 'string',
-      title: 'Breed'
+      title: 'Breed',
     },
-    {
-      name: 'name',
-      type: 'string',
-      title: 'Name'
-    },
-  ]
+  ],
 }
