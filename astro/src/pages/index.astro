@@ -2,15 +2,30 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import { getFirstBlogPost } from "../lib/api";
+import {  resultExport } from "../lib/api3";
 
-const firstPost = await getFirstBlogPost();
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
-    {JSON.stringify(firstPost, null, 2)}
+    <ul>
+      { resultExport ? 
+        resultExport.map((item) => {
+          return <li>{item.name}</li>
+        }) : <li>...loading</li>
+      }
+      
+    </ul>
+    <pre>
+      {JSON.stringify(resultExport, null, 2)}
+
+    </pre>
   </main>
 </Layout>
+
+<script>
+
+</script>
 
 <style>
   main {
