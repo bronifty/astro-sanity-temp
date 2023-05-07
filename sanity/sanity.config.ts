@@ -4,6 +4,7 @@ import {deskTool} from 'sanity/desk'
 import {schemaTypes} from './schemas'
 import {getStartedPlugin} from './plugins/sanity-plugin-tutorial'
 import {structure} from './src/structure'
+import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash'
 
 const devOnlyPlugins = [getStartedPlugin()]
 
@@ -20,6 +21,7 @@ export default defineConfig({
     }),
     visionTool(),
     ...(isDev ? devOnlyPlugins : []),
+    unsplashImageAsset(),
   ],
 
   schema: {
