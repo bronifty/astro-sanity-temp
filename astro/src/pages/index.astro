@@ -1,23 +1,33 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
-import { getFirstBlogPost } from "../lib/api";
-import {  resultExport } from "../lib/api3";
-
+// import { getFirstBlogPost } from "../lib/api";
+// import {  resultExport } from "../lib/api3";
+import {  getAllPosts } from "../lib/wpAPI";
+const data = await getAllPosts();
+console.log(data)
+// node {
+//           title
+//           slug
+//           content
+//         }
 ---
 
 <Layout title="Welcome to Astro.">
+
   <main>
     <ul>
-      { resultExport ? 
-        resultExport.map((item) => {
-          return <li>{item.name}</li>
-        }) : <li>...loading</li>
+      { data ? 
+        data?.map(({node: {title, slug, content}}) => 
+          ( <li>{title}</li>
+           <li>{slug}</li>
+           <li>{content}</li>)
+        ) : <li>...loading</li>
       }
-      
+      {JSON.stringify(data, null, 2)}
     </ul>
     <pre>
-      {JSON.stringify(resultExport, null, 2)}
+      <!-- {JSON.stringify(resultExport, null, 2)} -->
 
     </pre>
   </main>
@@ -71,3 +81,5 @@ import {  resultExport } from "../lib/api3";
     padding: 0;
   }
 </style>
+
+<!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut repellendus veniam ad minus et, velit voluptatum consequuntur maiores facilis sit? Non earum temporibus distinctio tempore ducimus reiciendis, voluptatibus iste magni. -->
