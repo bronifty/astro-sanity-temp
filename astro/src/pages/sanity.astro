@@ -1,8 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
-import {  getAllWPPosts } from "../lib";
-const data = await getAllWPPosts();
+import {  getAllSanityPosts } from "../lib";
+const data = await getAllSanityPosts();
 ---
 
 <Layout title="Welcome to Astro.">
@@ -11,10 +11,11 @@ const data = await getAllWPPosts();
     <h1>WP</h1>
     <ul>
       { data ? 
-        data?.map(({node: {title, slug, content}}) => 
-          ( <li>{title}</li>
-           <li>{slug}</li>
-           <li>{content}</li>)
+        data?.map(({name, animal, breed}) => 
+          ( <li>{name}</li>
+           <li>{animal}</li>
+           <li>{breed}</li>
+           )
         ) : <li>...loading</li>
       }
   

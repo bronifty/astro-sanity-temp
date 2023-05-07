@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-const API_URL = process.env.WP_URL;
+const API_URL = process.env.WORDPRESS_URL;
 
 async function fetchAPI(query, { variables } = {}) {
   const headers = { "Content-Type": "application/json" };
@@ -19,57 +19,19 @@ async function fetchAPI(query, { variables } = {}) {
   return json.data;
 }
 
-export async function getAllPagesWithSlugs() {
+export async function getAllWPPosts() {
   const data = await fetchAPI(`
   {
-    pages(first: 10000) {
+    posts {
       edges {
         node {
+          title
           slug
+          content
         }
       }
     }
   }
   `);
-  return data?.pages;
-}
-
-export async function getPageBySlug(slug) {
-  const data = await fetchAPI(`
-  {
-    page(id: "${slug}", idType: URI) {
-      title
-      content
-    }
-  }
-  `);
-  return data?.page;
-}
-
-export async function getPrimaryMenu() {
-  const data = await fetchAPI(`
-  {
-    menus(where: {location: PRIMARY}) {
-      nodes {
-        menuItems {
-          edges {
-            node {
-              path
-              label
-              connectedNode {
-                node {
-                  ... on Page {
-                    isPostsPage
-                    slug
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  `);
-  return data?.menus?.nodes[0];
+  return data?.posts?.edges;
 }
