@@ -5,20 +5,25 @@ export default defineType({
   title: 'Site Settings',
   type: 'document',
   fields: [
-    defineField('string', {
+    defineField({
       name: 'title',
-      title: 'Site Title',
+      title: 'Title',
       type: 'string',
     }),
-    defineField('string', {
+    defineField({
       name: 'description',
-      title: 'Site Description',
-      type: 'string',
+      title: 'Description',
+      type: 'text',
     }),
-    defineField('string', {
+    defineField({
       name: 'url',
-      title: 'Site Keywords',
-      type: 'string',
+      title: 'URL',
+      type: 'url',
+    }),
+    defineField({
+      name: 'ogImage',
+      title: 'Open Graph Image',
+      type: 'image',
     }),
   ],
 })
